@@ -55,7 +55,7 @@
             // dgv_canciones
             // 
             dgv_canciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_canciones.Location = new Point(55, 47);
+            dgv_canciones.Location = new Point(55, 39);
             dgv_canciones.Name = "dgv_canciones";
             dgv_canciones.Size = new Size(425, 167);
             dgv_canciones.TabIndex = 1;
@@ -148,7 +148,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.HotPink;
-            ClientSize = new Size(541, 460);
+            ClientSize = new Size(551, 486);
             Controls.Add(btn_limpiar);
             Controls.Add(label3);
             Controls.Add(txb_año);

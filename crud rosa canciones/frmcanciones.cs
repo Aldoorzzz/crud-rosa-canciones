@@ -16,13 +16,18 @@ namespace crud_rosa_canciones
 {
     public partial class frmcanciones : Form
     {
-        List<cancion> lista = new List<cancion>();
+        BindingList<cancion> lista = new BindingList<cancion>();
         int idSeleccionado = 0;
 
 
         public frmcanciones(Form1 formulario1)
         {
             InitializeComponent();
+
+            this.Load += frmcanciones_Load;
+
+            dgv_canciones.SelectionChanged += dgv_canciones_SelectionChanged;
+
         }
 
         private void dgv_canciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -47,22 +52,29 @@ namespace crud_rosa_canciones
 
         private void btn_agregar_Click(object sender, EventArgs e)
         {
-            try
+            if (true)
             {
-                cancion nueva = new cancion(siguienteId(), txb_titulo.Text, txb_artista.Text, int.Parse(txb_año.Text));
+                try
+                {
+                    cancion nueva = new cancion(siguienteId(), txb_titulo.Text[0], txb_artista.Text[0], int.Parse(txb_año.Text));
 
-                lista.Add(nueva);
+                    lista.Add(nueva);
+                    refrescar();
+                    MessageBox.Show("Canción agregada correctamente");
+                    limpiar();
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Error al agregar la canción: " + ex.Message);
+                }
                 limpiar();
-                refrescar();
-                MessageBox.Show("Canción agregada correctamente");
             }
-            catch (Exception ex)
-            {
+            
 
-                MessageBox.Show("Error al agregar la canción: " + ex.Message);
-            }
         }
-        private void limpiar()
+        public void limpiar()
         {
             dgv_canciones.SelectionChanged -= dgv_canciones_SelectionChanged;
 
@@ -74,14 +86,8 @@ namespace crud_rosa_canciones
 
 
             dgv_canciones.ClearSelection();
-            try
-            {
-                dgv_canciones.CurrentCell = null;
-            }
-            catch
-            {
-
-            }
+            if (dgv_canciones.Rows.Count > 0)
+                dgv_canciones.CurrentCell = dgv_canciones.Rows[0].Cells[0];
 
             dgv_canciones.SelectionChanged += dgv_canciones_SelectionChanged;
         }
@@ -127,8 +133,8 @@ namespace crud_rosa_canciones
 
             if (canc != null)
             {
-                canc.Titulo = txb_titulo.Text;
-                canc.Artista = txb_artista.Text;
+                canc.Titulo = txb_titulo.Text[0];
+                canc.Artista = txb_artista.Text[0];
                 canc.Año = int.Parse(txb_año.Text);
 
                 limpiar();
@@ -168,8 +174,8 @@ namespace crud_rosa_canciones
 
             idSeleccionado = canc.Id;
 
-            txb_titulo.Text = canc.Titulo;
-            txb_artista.Text = canc.Artista;
+            txb_titulo.Text = canc.Titulo.ToString();
+            txb_artista.Text = canc.Artista.ToString();
             txb_año.Text = canc.Año.ToString();
         }
 

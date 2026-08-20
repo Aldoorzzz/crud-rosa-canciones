@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             toolStrip1 = new ToolStrip();
             toolStripButton1 = new ToolStripButton();
+            bindingSource1 = new BindingSource(components);
             toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -62,10 +65,12 @@
             ClientSize = new Size(705, 464);
             Controls.Add(toolStrip1);
             Name = "Form1";
-            Text = "Form1";
+            ShowIcon = false;
+            Text = "Canciones";
             WindowState = FormWindowState.Maximized;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -74,5 +79,6 @@
 
         private ToolStrip toolStrip1;
         private ToolStripButton toolStripButton1;
+        private BindingSource bindingSource1;
     }
 }
